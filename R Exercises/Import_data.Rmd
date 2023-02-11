@@ -1,0 +1,43 @@
+---
+title: "Import"
+---
+## Step 1: Load packages
+
+```{r}
+install.packages("tidyverse")
+```
+```{r}
+library(tidyverse)
+```
+## Step 2: Import data
+
+
+```{r}
+bookings_df <- read_csv("hotel_bookings.csv")
+```
+
+
+## Step 3: Inspect & clean data
+
+```{r}
+head(bookings_df)
+```
+
+```{r}
+str(bookings_df)
+```
+
+```{r}
+colnames(bookings_df)
+```
+
+Createe average daily rate, which is referred to as `adr` in the data frame, and  `adults`:
+
+```{r}
+new_df <- select(bookings_df, `adr`, adults)
+```
+
+```{r}
+mutate(new_df, total = `adr` / adults)
+```
+

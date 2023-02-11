@@ -1,0 +1,48 @@
+---
+title: "GGPlot"
+output: pdf_document
+---
+
+## The Scenario
+
+In this scenario, you are a junior data analyst working for a hotel booking company. You have cleaned and manipulated your data, and gotten some initial insights you would like to share. Now, you are going to create some simple data visualizations with the `ggplot2` package. You will use basic `ggplot2` syntax and troubleshoot some common errors you might encounter
+
+## Step 1: Import data 
+
+```{r load data}
+hotel_bookings <- read.csv("hotel_bookings.csv")
+```
+## Step 2: Look at the data
+
+```{r examining your data}
+head(hotel_bookings)
+```
+
+```{r look at column names}
+colnames(hotel_bookings)
+```
+
+## Step 3: Install and load the 'ggplot2' package
+
+```{r loading and installing ggplot2, echo=FALSE, message=FALSE}
+install.packages('ggplot2')
+library(ggplot2)
+```
+
+## Step 4: Creating a plot
+
+```{r creating a plot}
+ggplot(data = hotel_bookings) +
+  geom_point(mapping = aes(x = lead_time, y = children))
+```
+Next, your stakeholder says that she wants to increase weekend bookings, an important source of revenue for the hotel. Your stakeholder wants to know what group of guests book the most weekend nights in order to target that group in a new marketing campaign. She suggests that guests without children book the most weekend nights. Is this true? 
+
+## Step 5: Solve
+
+```{r}
+ggplot(data = hotel_bookings) +
+ geom_point(mapping = aes(x = stays_in_weekend_nights, y = children))
+```
+
+
+

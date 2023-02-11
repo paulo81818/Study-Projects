@@ -1,0 +1,86 @@
+---
+title: "Cleaning data"
+---
+
+## Step 1: Load packages
+
+```{r}
+install.packages("tidyverse")
+install.packages("skimr")
+install.packages("janitor")
+```
+
+Once a package is installed, you can load it by running the `library()` function with the package name inside the parentheses:
+
+```{r}
+library(tidyverse)
+library(skimr)
+library(janitor)
+```
+## Step 2: Import data
+
+```{r}
+bookings_df <- read_csv("hotel_bookings.csv")
+```
+## Step 3: See data
+
+```{r}
+head(bookings_df)
+```
+
+```{r}
+str(bookings_df)
+```
+
+```{r}
+glimpse(bookings_df)
+```
+
+```{r}
+colnames(bookings_df)
+```
+
+```{r}
+skim_without_charts(bookings_df)
+```
+## Step 4: Cleaning data
+
+
+```{r}
+trimmed_df <- bookings_df %>% 
+  select(hotel, is_canceled, lead_time)
+```
+
+Rename the variable 'hotel' to be named 'hotel_type':
+```{r}
+trimmed_df %>% 
+  select(hotel, is_canceled, lead_time) %>% 
+  rename(hotel_type = hotel)
+```
+
+Combine the arrival month and year using the unite() function:
+
+```{r}
+example_df <- bookings_df %>%
+  select(arrival_date_year, arrival_date_month) %>% 
+  unite(arrival_month_year, c("arrival_date_month", "arrival_date_year"), sep = " ")
+```
+
+## Step 5: Mutate
+
+```{r}
+example_df <- bookings_df %>%
+  mutate(guests = adults + children + babies)
+
+head(example_df)
+```
+
+Calculate the total number of canceled bookings and the average lead time for booking.
+
+```{r}
+example_df <- bookings_df %>%
+  summarize(number_canceled = sum(is_canceled),
+            average_lead_time = mean(lead_time))
+
+head(example_df)
+```

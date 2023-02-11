@@ -1,0 +1,69 @@
+
+## Step 1: Load packages
+
+```{r}
+install.packages("tidyverse")
+```
+```{r}
+library(tidyverse)
+```
+
+## Step 2: Create data frame
+
+```{r}
+names <- c("Peter", "Jennifer", "Julie", "Alex")
+```
+
+Then create a vector of ages:
+
+```{r}
+age <- c(15, 19, 21, 25)
+```
+
+Create a new data frame called `people`:
+
+```{r}
+people <- data.frame(names, age)
+```
+
+## Step 3: inspect the data frame
+
+```{r}
+head(people)
+```
+
+```{r}
+str(people)
+```
+
+```{r}
+glimpse(people)
+```
+
+```{r}
+colnames(people)
+```
+
+
+```{r}
+mutate(people, age_in_20 = age + 20)
+```
+
+## Step 4: Create dataframe
+
+
+```{r}
+fruit <- c("Lemon", "Blueberry", "Grapefruit", "Mango", "Strawberry")
+```
+
+```{r}
+rank <- c(4, 2, 5, 3, 1)
+```
+
+```{r}
+fruit_ranks <- data.frame(fruit, rank)
+```
+
+```{r}
+head(fruit_ranks)
+```

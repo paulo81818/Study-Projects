@@ -1,0 +1,109 @@
+---
+title: "Change data"
+---
+
+## Step 1: Load packages
+
+```{r install packages}
+install.packages("tidyverse")
+install.packages("skimr")
+install.packages("janitor")
+```
+
+Once a package is installed, you can load it by running the `library()` function with the package name inside the parentheses:
+
+```{r load packages}
+library(tidyverse)
+library(skimr)
+library(janitor)
+```
+
+## Step 2: Import data
+
+```{r load dataset}
+hotel_bookings <- read_csv("hotel_bookings.csv")
+```
+
+## Step 3: Check data
+
+```{r head function}
+head(hotel_bookings)
+```
+
+
+```{r str function}
+str(hotel_bookings)
+```
+
+```{r glimpse function}
+glimpse(hotel_bookings)
+```
+
+```{r colnames function}
+colnames(hotel_bookings)
+```
+
+## Manipulating data
+
+
+```{r arrange function}
+arrange(hotel_bookings, lead_time)
+```
+
+```{r arrange function descending} 
+arrange(hotel_bookings, desc(lead_time))
+```
+```{r head function part two}
+head(hotel_bookings)
+```
+
+
+```{r new dataframe}
+hotel_bookings_v2 <-
+  arrange(hotel_bookings, desc(lead_time))
+```
+
+```{r new dataframe part two}
+head(hotel_bookings_v2)
+```
+
+```{r}
+max(hotel_bookings$lead_time)
+```
+
+```{r}
+min(hotel_bookings$lead_time)
+```
+
+```{r mean}
+mean(hotel_bookings$lead_time)
+```
+```{r mean part two}
+mean(hotel_bookings_v2$lead_time)
+```
+
+```{r filter}
+hotel_bookings_city <- 
+  filter(hotel_bookings, hotel_bookings$hotel=="City Hotel")
+```
+
+```{r new dataset}
+head(hotel_bookings_city)
+```
+
+```{r average lead time city hotels}
+mean(hotel_bookings_city$lead_time)
+```
+
+```{r group and summarize}
+hotel_summary <- 
+  hotel_bookings %>%
+  group_by(hotel) %>%
+  summarise(average_lead_time=mean(lead_time),
+            min_lead_time=min(lead_time),
+            max_lead_time=max(lead_time))
+```
+
+```{r}
+head(hotel_summary)
+```

@@ -1,0 +1,59 @@
+---
+title: "R Sandbox Activity"
+---
+
+```{r}
+install.packages("tidyverse")
+```
+
+
+```{r}
+library(tidyverse)
+```
+
+# Step 2: Viewing data
+
+```{r}
+head(diamonds)
+```
+
+```{r}
+str(diamonds)
+```
+
+```{r}
+glimpse(diamonds)
+```
+
+```{r}
+colnames(diamonds)
+```
+
+## Step 3: Cleaning data
+
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price, color = cut)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price, color = cut)) +
+  geom_point() +
+  facet_wrap(~cut)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
